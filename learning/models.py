@@ -17,12 +17,11 @@ class Course(models.Model):
         ordering = ('title',)
 
 
-# Класс модели "Урок": курс, название, описание, превью (картинка), ссылка на видео
 class Lesson(models.Model):
     course = models.ForeignKey('Course', on_delete=models.CASCADE, verbose_name='курс')
     title = models.CharField(max_length=200, verbose_name='название')
     description = models.TextField(**NULLABLE, verbose_name='описание')
-    image = models.ImageField(upload_to='lessons', verbose_name='первью', **NULLABLE)
+    image = models.ImageField(upload_to='lessons', verbose_name='превью', **NULLABLE)
     video_url = models.URLField(verbose_name='ссылка на видео', **NULLABLE,)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата и время создания')
 
